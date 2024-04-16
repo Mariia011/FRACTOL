@@ -6,8 +6,8 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:28 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/15 13:08:56 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:57:33 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+// #include "fractol.h"
