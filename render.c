@@ -6,13 +6,14 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:50:20 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/16 20:51:03 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:49:34 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+# include "./mlx/mlx.h"
 
-void	fractol_render(t_fractol *fractal)
+void	fractal_render(t_fractol *fractal)
 {
 	int	x;
 	int	y;
@@ -34,12 +35,12 @@ static void	pixel_put(int x, int y, t_image *img, int color)
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
 
-void	handle_pixel(int x, int y, t_fractol *fractal)
+ void	handle_pixel(int x, int y, t_fractol *fractal)
 {
 	t_complex_num	z;
 	t_complex_num	c;
-	int			n;
-	int			color;
+	int				n;
+	int				color;
 
 	z.x = 0.0;
 	z.y = 0.0;

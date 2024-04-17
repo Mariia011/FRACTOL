@@ -6,11 +6,12 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:16:30 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/16 19:28:27 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:49:35 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+# include "./mlx/mlx.h"
 
 double	map(double unscaled_num, double new_min, double new_max, double old_min,
 		double old_max)

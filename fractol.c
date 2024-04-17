@@ -6,11 +6,12 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:24 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/16 19:17:53 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:47:42 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+# include "./mlx.h"
 
 int main(int argc, char **argv)
 {

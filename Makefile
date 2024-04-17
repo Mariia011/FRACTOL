@@ -1,11 +1,12 @@
 NAME = fractol
 
-GCC = gcc #-Wall -Wextra -Werror
+GCC = cc *.c
+MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
 
 HELPERPATH = ./libft/
-MINILIBX = /Users/marikhac/Desktop/fractol/MiniLibX
-HELPER = $(HELPERPATH)libftprintf.a
-
+# MINILIBX = /Users/marikhac/Desktop/fractol/MiniLibX
+HELPER = $(HELPERPATH)libft.a
+# DEBUG = -fsanitize=address
 MAKE = make -C
 
 MANDATORY = ./*.c
@@ -15,13 +16,13 @@ OBJS = $(MANDATORY:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(HELPER) $(OBJS)
-	$(GCC) $(HELPER) $(OBJS) -o $@
+	$(GCC) $(MLXFLAGS) $(OBJS) $(HELPER) -o $@
 
 $(HELPER) :
 	$(MAKE) $(HELPERPATH)
 
-$(OBJS) : $(MANDATORY)
-	$(GCC) -c $(MANDATORY)
+%.o : %.c
+	$(GCC) -c $^
 
 clean :
 	$(MAKE)  $(HELPERPATH) clean
