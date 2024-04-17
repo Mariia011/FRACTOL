@@ -6,7 +6,7 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:19 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/17 15:49:35 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:20:08 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WIDTH 800
 # define HEIGHT 800
 
-# include "./mlx/mlx.h"
 # include "./libft/libft.h"
+# include "./mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -35,7 +35,7 @@ typedef struct s_image
 	void		*img_ptr;
 	char		*pixels_ptr;
 	int			bpp;
-	int 		endian; //??
+	int endian; //??
 	int			line_len;
 }				t_image;
 
@@ -57,12 +57,12 @@ typedef struct s_fractol
 
 }				t_fractol;
 
-// int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 void			fractal_init(t_fractol *fractal);
-static void	data_init(t_fractol *fractal);
+static void		data_init(t_fractol *fractal);
 
 void			fractal_render(t_fractol *fractal);
-void	handle_pixel(int x, int y, t_fractol *fractal);
+void			handle_pixel(int x, int y, t_fractol *fractal);
 
 t_complex_num	sum_complex(t_complex_num z1, t_complex_num z2);
 t_complex_num	square_complex(t_complex_num z);

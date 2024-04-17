@@ -6,25 +6,24 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:24 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/17 15:47:42 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:27:03 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-# include "./mlx.h"
 
-int main(int argc, char **argv)
+int main(int argc, char ** argv)
 {
 	t_fractol fractal;
-	if((2 != argc && 0 != ft_strncmp(argv[1], "Mandelbrot", 10))
-		|| (4 != argc && 0 != ft_strncmp(argv[1], "Julia", 5)))
-	{
-		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+	// if((2 != argc && 0 != ft_strncmp(argv[1], "mandelbrot", 10))
+	// 	|| (4 != argc && 0 != ft_strncmp(argv[1], "julia", 5)))
+	// {
+	// 	ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+	// 	exit(EXIT_FAILURE);
+	// }
 	fractal.name = argv[1];
 	fractal_init(&fractal);
 	fractal_render(&fractal);
-	// mlx_loop(fractal.mlx_connection);
+	mlx_loop(fractal.mlx_connection);
 	return(0);
 }
