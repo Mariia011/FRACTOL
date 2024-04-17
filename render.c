@@ -6,7 +6,7 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:50:20 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/17 17:08:44 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:07:57 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,12 @@ void	fractal_render(t_fractol *fractal)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
-		fractal->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window, fractal->img.img_ptr, 0, 0);
 }
-
 
 static void	pixel_put(int x, int y, t_image *img, int color)
 {
 	int	offset;
-		printf("color : %d\n", color);
-
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
@@ -60,10 +56,10 @@ static void	pixel_put(int x, int y, t_image *img, int color)
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
 			color = map(n, BLACK, WHITE, 0, fractal->iteration);
-			pixel_put(x, y, &fractal->img, RED);
+			pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
 		n++;
 	}
-	pixel_put(x, y, &fractal->img, RED);
+	pixel_put(x, y, &fractal->img, WHITE);
 }
