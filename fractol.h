@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aamirkha <aamirkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:19 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/19 15:21:17 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:23:51 by aamirkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_complex_num	square_complex(t_complex_num z);
 double			map(double unscaled_num, double new_min, double new_max, double old_max);
 double			atodouble(char *s);
 
-t_complex_num 	bonus_handle(t_complex_num z, t_complex_num c, t_fractol *fractal);
+void bonus_handle(t_complex_num z, t_complex_num *c, t_fractol *fractal);
 void			handle_pixel(int x, int y, t_fractol *fractal);
 int				mouse_handle(int button, int x, int y, t_fractol *fractal);
 int 			key_handler(int keysym, t_fractol *fractal);
