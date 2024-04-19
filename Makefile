@@ -4,32 +4,31 @@ GCC = cc
 MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
 
 HELPERPATH = ./libft/
-# MINILIBX = /Users/marikhac/Desktop/fractol/MiniLibX
 HELPER = $(HELPERPATH)libft.a
 DEBUG = -fsanitize=address
 MAKE = make -C
 
-MANDATORY = ./*.c
+MANDATORY = $(wildcard ./*.c)
 
-OBJS = $(MANDATORY:.c=.o)
+OBJS = $(patsubst %.c, %.o, $(MANDATORY))
 
 all : $(NAME)
 
-$(NAME) : $(HELPER) $(OBJS)
+$(NAME) : $(OBJS) $(HELPER)
 	$(GCC) $(DEBUG) $(MLXFLAGS) $(OBJS) $(HELPER) -o $@
 
 $(HELPER) :
 	$(MAKE) $(HELPERPATH)
 
-%.o : %.c
-	$(GCC) -c $^
+%.o : %.c Makefile
+	$(GCC) -c $< -o $@
 
 clean :
-	$(MAKE)  $(HELPERPATH) clean
+	$(MAKE) $(HELPERPATH) clean
 	rm -f $(OBJS)
 
 fclean : clean
-	$(MAKE)  $(HELPERPATH) fclean
+	$(MAKE) $(HELPERPATH) fclean
 	rm -f $(NAME)
 
 re: fclean all
