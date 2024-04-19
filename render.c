@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aamirkha <aamirkha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:50:20 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/19 16:23:36 by aamirkha         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:17:52 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ static void	pixel_put(int x, int y, t_image *img, int color)
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
 
+
 void bonus_handle(t_complex_num z, t_complex_num *c, t_fractol *fractal)
 {
 	if (!ft_strncmp(fractal->name, "mandelbrot", ft_strlen("mandelbrot")))
 		*c = z;
-	*c = fractal->c;
+	else if (!ft_strncmp(fractal->name, "julia", ft_strlen("julia")))
+		*c = fractal->julia;
+	else
+		*c = fractal->c;
 }
 
  void	handle_pixel(int x, int y, t_fractol *fractal)
@@ -54,13 +58,12 @@ void bonus_handle(t_complex_num z, t_complex_num *c, t_fractol *fractal)
 
 	z.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
 	z.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
-	printf("x : %f\ny : %f\n", (z.x),  (z.y));
 	bonus_handle(z, &c, fractal);
 	n = 0;
 	while (n < fractal->iteration)
 	{
 		z = sum_complex(square_complex(z), c);
-		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
+		if ((z.x * z.x) + (z.y * z.y) > fractal->hypothenuse)
 		{
 			color = map(n, BLACK, WHITE, fractal->iteration);
 			pixel_put(x, y, &fractal->img, color);
@@ -68,5 +71,5 @@ void bonus_handle(t_complex_num z, t_complex_num *c, t_fractol *fractal)
 		}
 		n++;
 	}
-	pixel_put(x, y, &fractal->img, ELECTRIC_BLUE);
+	pixel_put(x, y, &fractal->img, HOT_PINK);
 }

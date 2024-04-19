@@ -6,7 +6,7 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:53:49 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/19 15:22:12 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:57:21 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	mouse_handle(int button, int x, int y, t_fractol *fractal)
 	return (0);
 }
 
-int key_handler(int keysym, t_fractol *fractal)
+int key_handler_bonus(int keysym, t_fractol *fractal)
 {
 	double shift_factor = 0.5;
 	if (RES_MINUS == keysym)
@@ -45,18 +45,29 @@ int key_handler(int keysym, t_fractol *fractal)
 		fractal->shift_y -= shift_factor * fractal->zoom;
 	else if (KEY_UP == keysym)
 		fractal->shift_y += shift_factor * fractal->zoom;
-	else if (KEY_ESCAPE == keysym)
+	key_handler(keysym, fractal);
+	return 0;
+}
+
+int key_handler(int keysym, t_fractol *fractal)
+{
+	if (KEY_ESCAPE == keysym)
 		destroy_handle(fractal);
+	else if (KEY_LOCK == keysym)
+		fractal->state = !fractal->state;
 	fractal_render(fractal);
 	return 0;
 }
 
 int	julia_handle(int x, int y, t_fractol *fractal)
 {
+	if(UNLOCK == fractal->state)
+	{
 		fractal->julia.x = (map(x, -2, 2, WIDTH) * fractal->zoom)
-			+ fractal->shift_x;
+				+ fractal->shift_x;
 		fractal->julia.y = (map(y, 2, -2, HEIGHT) * fractal->zoom)
-			+ fractal->shift_y;
+				+ fractal->shift_y;
 		fractal_render(fractal);
+	}
 	return (0);
 }
