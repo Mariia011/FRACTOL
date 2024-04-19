@@ -6,7 +6,7 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:50:20 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/17 19:07:57 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:43:37 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ static void	pixel_put(int x, int y, t_image *img, int color)
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
 
+
+t_complex_num bonus_handle(t_complex_num z, t_complex_num c, t_fractol *fractal)
+{
+	if (!ft_strncmp(fractal->name, "mandelbrot", ft_strlen("mandelbrot")))
+		return z;
+	return fractal->c;
+}
+
  void	handle_pixel(int x, int y, t_fractol *fractal)
 {
 	t_complex_num	z;
@@ -45,21 +53,21 @@ static void	pixel_put(int x, int y, t_image *img, int color)
 	int				n;
 	int				color;
 
-	z.x = 0.0;
-	z.y = 0.0;
-	c.x = map(x, -2, +2, 0, WIDTH);
-	c.y = map(y, +2, -2, 0, HEIGHT);
+	z.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	z.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+	bonus_handle(z, c, fractal);
 	n = 0;
 	while (n < fractal->iteration)
 	{
 		z = sum_complex(square_complex(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
-			color = map(n, BLACK, WHITE, 0, fractal->iteration);
+			printf("%f\n", (z.x * z.x) + (z.y * z.y));
+			color = map(n, BLACK, WHITE, fractal->iteration);
 			pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
 		n++;
 	}
-	pixel_put(x, y, &fractal->img, WHITE);
+	pixel_put(x, y, &fractal->img, ELECTRIC_BLUE);
 }

@@ -1,7 +1,7 @@
 NAME = fractol
 
 GCC = cc
-MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit
+MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
 
 HELPERPATH = ./libft/
 # MINILIBX = /Users/marikhac/Desktop/fractol/MiniLibX

@@ -6,7 +6,7 @@
 /*   By: marikhac <marikhac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:08:24 by marikhac          #+#    #+#             */
-/*   Updated: 2024/04/17 19:09:15 by marikhac         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:38:53 by marikhac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 int main(int argc, char ** argv)
 {
 	t_fractol fractal;
-	// if((2 != argc && 0 != ft_strncmp(argv[1], "mandelbrot", 10))
-	// 	|| (4 != argc && 0 != ft_strncmp(argv[1], "julia", 5)))
+	if((2 != argc) || (ft_strncmp(argv[1], "mandelbrot", 10)
+		 && ft_strncmp(argv[1], "bonus", 5)))
+	{
+		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+	// else if(argc == 4 && !ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 	// {
-	// 	ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
-	// 	exit(EXIT_FAILURE);
+	// 	fractal.julia.x = atodouble(argv[2]);
+	// 	fractal.julia.y = atodouble(argv[3]);
+	// 	fractal_init(&fractal);
 	// }
 	fractal.name = argv[1];
 	fractal_init(&fractal);
